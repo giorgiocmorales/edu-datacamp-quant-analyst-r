@@ -1,0 +1,1 @@
+# QA2 Introduction to R for Finance 
