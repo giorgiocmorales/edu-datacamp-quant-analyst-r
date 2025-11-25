@@ -65,6 +65,58 @@ maunaloa_end <- end(maunaloa)
 
 maunaloa_end - maunaloa_start
 
+# Save the start point of maunaloa: maunaloa_start
+maunaloa_start <- start(maunaloa)
+print(maunaloa_start)
+
+# Assign the formatted date to start_iso
+start_iso <- date_decimal(maunaloa_start)
+print(start_iso)
+
+# Convert to Date class
+as_date(start_iso)
+
+# Cards vectors
+set.seed(123)
+
+cards_price <- rnorm(730, mean = 5, sd = 0.10)
+cards_price[cards_price < 4.66] <- 4.66
+cards_price[cards_price > 5.32] <- 5.32
+
+cards_index <- seq.Date(
+  from = as.Date("2013-01-01"),
+  to   = as.Date("2014-12-31"),
+  by   = "day"
+)
+
+# Return the head of cards_index
+head(cards_index)
+
+# Return the head of cards_price
+head(cards_price)
+
+# Create a zoo object: cards_zoo
+cards_zoo <- zoo(x = cards_price, order.by = cards_index)
+
+# Autoplot cards_zoo
+autoplot(cards_zoo)
+
+# Enter the x and y axis mapping aesthetics
+ggplot(cards_price, aes(x = Index, y = card_price)) + 
+  
+  scale_y_continuous() + 
+  # Plot the data with a red-colored line
+  geom_line(color = "red") + 
+  
+  # Use the light theme
+  theme_light() + 
+  
+  # Enter the appropriate axis labels and title
+  labs( 
+    x = "Index",
+    y = "Price (EUR)",
+    title = "Daily Card Prices for Trading Card Game")
+
 # CHAPTER 3 ------
 
 # CHAPTER 4 ------
