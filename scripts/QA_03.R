@@ -4,6 +4,7 @@
 library(tidyverse)
 library(ggplot2)
 library(zoo)
+library(xts)
 library(lubridate)
 
 # CHAPTER 1 ------
@@ -102,7 +103,7 @@ cards_zoo <- zoo(x = cards_price, order.by = cards_index)
 autoplot(cards_zoo)
 
 # Enter the x and y axis mapping aesthetics
-ggplot(cards_price, aes(x = Index, y = card_price)) + 
+ggplot(cards_zoo, aes(x = Index, y = cards_zoo)) + 
   
   scale_y_continuous() + 
   # Plot the data with a red-colored line
